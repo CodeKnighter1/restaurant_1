@@ -1,18 +1,20 @@
 import { Button } from "@/components/ui/button"
 import { Star, MapPin, Clock, DollarSign } from "lucide-react"
 import card_i1 from "@/images/card_i1.jpg"
+import { useTranslation } from "react-i18next"
 
 function All_res() {
+    const { t } = useTranslation();
     return (
         <div className='py-16 px-8'>
-            <h1 className='text-4xl font-bold text-center mb-4 mt-6'>Barcha Restoranlar</h1>
+            <h1 className='text-4xl font-bold text-center mb-4 mt-6'>{t("all_restaurants")}</h1>
             <p className='text-center text-gray-600 mb-10'>
-                Hududingizdagi eng ajotib restoranlarni toping va ularni baholang.
+                {t("all_restaurants_title")}
             </p>
 
             <div className='flex flex-wrap justify-center gap-10'>
                 {/* Restoran 1 */}
-                <div className='w-[350px] bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow'>
+                <div className='w-full sm:w-[350px] bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow'>
                     <img src={card_i1} alt="Ember va Embar" className='w-full h-48 object-cover' />
                     <div className='p-4'>
                         <h2 className='text-xl font-bold mb-1'>Ember va Embar</h2>
@@ -47,7 +49,7 @@ function All_res() {
                 </div>
 
                 {/* Restoran 2 */}
-                <div className='w-[350px] bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow'>
+                <div className='w-full sm:w-[350px] bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow'>
                     <img src={card_i1} alt="Sakura Sushi" className='w-full h-48 object-cover' />
                     <div className='p-4'>
                         <h2 className='text-xl font-bold mb-1'>Sakura Sushi</h2>
@@ -81,7 +83,7 @@ function All_res() {
                     </div>
                 </div>
 
-                <div className='w-[350px] bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow'>
+                <div className='w-full sm:w-[350px] bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow'>
                     <img src={card_i1} alt="Sakura Sushi" className='w-full h-48 object-cover' />
                     <div className='p-4'>
                         <h2 className='text-xl font-bold mb-1'>Sakura Sushi</h2>
@@ -115,7 +117,7 @@ function All_res() {
                     </div>
                 </div>
 
-                <div className='w-[350px] bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow'>
+                <div className='w-full sm:w-[350px] bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow'>
                     <img src={card_i1} alt="Sakura Sushi" className='w-full h-48 object-cover' />
                     <div className='p-4'>
                         <h2 className='text-xl font-bold mb-1'>Sakura Sushi</h2>
@@ -149,7 +151,7 @@ function All_res() {
                     </div>
                 </div>
 
-                <div className='w-[350px] bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow'>
+                <div className='w-full sm:w-[350px] bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow'>
                     <img src={card_i1} alt="Sakura Sushi" className='w-full h-48 object-cover' />
                     <div className='p-4'>
                         <h2 className='text-xl font-bold mb-1'>Sakura Sushi</h2>
@@ -183,7 +185,7 @@ function All_res() {
                     </div>
                 </div>
 
-                <div className='w-[350px] bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow'>
+                <div className='w-full sm:w-[350px] bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow'>
                     <img src={card_i1} alt="Sakura Sushi" className='w-full h-48 object-cover' />
                     <div className='p-4'>
                         <h2 className='text-xl font-bold mb-1'>Sakura Sushi</h2>

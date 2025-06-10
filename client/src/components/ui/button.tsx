@@ -12,14 +12,15 @@ const buttonVariants = cva(
         default:
           "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
         destructive:
-          "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
+          "w-full text-white bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 bg-[length:200%_auto] hover:bg-right transition-all duration-500 ease-in-out shadow-lg hover:shadow-2xl rounded-xl",
         outline:
           "border bg-background shadow-xs hover:bg-blue-800 hover:text-white dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
         secondary:
           "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
-        link: "text-primary underline-offset-4 hover:underline",
+        link: "w-full text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-indigo-600 hover:to-blue-500 hover:scale-[1.03] transition-all duration-300 ease-in-out shadow-md hover:shadow-xl rounded-x2",
+        glassmorphism: "w-full text-white bg-cyan-500 hover:bg-cyan-600 hover:scale-[1.04] transition-all duration-300 ease-in-out rounded-2xl shadow-md hover:shadow-xl"
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

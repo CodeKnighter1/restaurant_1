@@ -192,7 +192,13 @@ export default function RestaurantDetail() {
                     </div>
                 </div>
             </div>
+
+            {/* {Data section} */}
+            <div>
+                <h2 className="iconic text-3xl">Ma'lumotlar</h2>
+                <p className="mt-2 text-[18px] mono">InterContinental Tashkentning 17-qavatida joylashgan Ember shunchaki restoran emas. Bu sizni orzuga o'xshash holatga olib boradigan ajoyib shahar manzaralari bilan to'ldirilgan ovqatlanish san'atiga bo'lgan yuksak hurmatdir. Menyuda nozik sushi va sashimidan tortib, ta'mingizni hayratda qoldiradigan osiyo taomlarigacha bo'lgan oshxona lazzatlarining ajoyib kombinatsiyasi mavjud. Ko'mir bilan o'pilgan, quruq keksa bifshtekslar shunchaki chidab bo'lmas va Karaage va Rok qisqichbaqalari bizning sevimlilarimiz qatoriga kiradi. Barda sinchkovlik bilan tayyorlangan kokteyllar xizmat qiladi va shaxsiy ovqat xonasi eksklyuzivlik va qulaylikni ta'minlaydi.</p>
+            </div>
         </div>
-    
+
     );
 }
