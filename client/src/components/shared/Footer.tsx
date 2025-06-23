@@ -39,8 +39,8 @@ function Footer() {
                             <li className="hover:text-blue-600 transition-colors cursor-pointer">{t("footer_l_2")}</li>
                             <li className="hover:text-blue-600 transition-colors cursor-pointer">{t("footer_l_3")}</li>
                             <li className="hover:text-blue-600 transition-colors cursor-pointer">
-                                <Link to="/contact">
-                                    <a href="#">{t("footer_con")}</a>
+                                <Link to="/contact" className="hover:text-blue-500">
+                                    Contact
                                 </Link>
                             </li>
                         </ul>

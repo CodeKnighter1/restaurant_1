@@ -1,3 +1,4 @@
+// src/App.tsx
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/shared/Navbar';
 import Home from './pages/Home';
@@ -16,12 +17,13 @@ import Auth from './pages/Auth';
 import All_hotel from './pages/All_hotel';
 import Res_1 from './components/insight/Res_1';
 import Footer from './components/shared/Footer';
+import CardForm from './components/CardForm'; // Import the new component
 
 AOS.init();
 
 function App() {
   return (
-    <div className='overflow-x-hidden'>
+    <div className="overflow-x-hidden">
       <Navbar />
       <Routes>
         <Route
@@ -57,6 +59,7 @@ function App() {
         <Route path="/all-hotel" element={<All_hotel />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/res_1" element={<Res_1 />} />
+        <Route path="/add-card" element={<CardForm />} /> {/* Add this route */}
       </Routes>
     </div>
   );

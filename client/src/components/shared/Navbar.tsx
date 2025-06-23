@@ -68,7 +68,7 @@ function Navbar() {
           </Link>
 
           {/* Desktop Menu */}
-          <ul className="hidden md:flex gap-6 sm:gap-10">
+          <ul className="hidden md:flex gap-8 sm:gap-10 lg:gap-4">
             <li><button onClick={() => scrollToSection("home")} className="hover:underline underline-offset-4 text-sm sm:text-base">{t("home")}</button></li>
             <li><button onClick={() => scrollToSection("top-restaurants")} className="hover:underline underline-offset-4 text-sm sm:text-base">{t("top_res")}</button></li>
             <li><button onClick={() => scrollToSection("contact")} className="hover:underline underline-offset-4 text-sm sm:text-base">{t("contact")}</button></li>
@@ -78,7 +78,7 @@ function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             <Popover open={open} onOpenChange={setOpen}>
               <PopoverTrigger asChild>
-                <Button variant="outline" className="w-[120px] sm:w-[150px] justify-between text-xs sm:text-sm">
+                <Button variant="outline" className="w-[120px] lg:w-[100px] sm:w-[150px] justify-between text-xs sm:text-sm">
                   {frameworks.find((f) => f.value === value)?.label || "Language"}
                   <ChevronsUpDown className="w-4 h-4 ml-2" />
                 </Button>
@@ -105,7 +105,7 @@ function Navbar() {
             </Popover>
 
             <div className="relative">
-              <Input placeholder="Search" className="w-[150px] sm:w-[250px] pl-10 text-sm" />
+              <Input placeholder="Search" className="w-[150px] lg:w-[180px] md:w-[140px] sm:w-[250px] pl-10 text-sm" />
               <CiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
             </div>
 
