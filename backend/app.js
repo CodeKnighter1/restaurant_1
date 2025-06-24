@@ -16,6 +16,7 @@ app.use(express.json());
 require('dotenv').config();
 
 app.use('/api', require('./routes/card.route'));
+app.use('/api', require('./routes/hotel.route'))
 
 const connectDb = async () => {
   try {

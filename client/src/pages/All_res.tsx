@@ -123,7 +123,7 @@ function All_res() {
                                     ${card.price != null ? card.price.toFixed(2) : 'N/A'}
                                 </div>
 
-                                <div className="flex gap-2">
+                                <div className="flex gap-2 mb-0">
                                     <Button variant="default" className="flex-1 cursor-pointer">
                                         {t('visit')}
                                     </Button>

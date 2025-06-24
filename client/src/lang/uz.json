@@ -102,5 +102,15 @@
   "delete_success": "Restoran muvaffaqiyatli o'chirildi.",
   "delete_error": "Restoranni o'chirishda xatolik yuz berdi. Iltimos, qayta urinib ko'ring.",
   "all_hotels": "Barcha mehmonxonalar",
-  "all_hotels_title": "O'zbekiston bo'ylab eng yaxshi mehmonxonalar va restoranlarni kashf eting"
+  "all_hotels_title": "O'zbekiston bo'ylab eng yaxshi mehmonxonalar va restoranlarni kashf eting",
+  "japanese": "Yapon",
+  "italian": "Italiya",
+  "hotel": "Mehmonxona",
+  "other": "Boshqa",
+  "no_rating": "Reyting mavjud emas",
+  "create_restaurant_error": "Restoran yaratishda xato yuz berdi",
+  "add_hotel": "Mehmonxona qo'shish",
+  "add_hotel_description": "Yangi mehmonxona qo'shish uchun ma'lumotlarni kiriting",
+  "create_hotel": "Mehmonxona yaratish",
+  "create_hotel_error": "Mehmonxona yaratishda xato yuz berdi"
 }
