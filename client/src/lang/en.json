@@ -102,5 +102,6 @@
   "delete_success": "Restaurant deleted successfully.",
   "delete_error": "Failed to delete restaurant.",
   "all_hotels": "All Hotels",
-  "all_hotels_title": "Explore the best hotels and restaurants across Uzbekistan."
+  "all_hotels_title": "Explore the best hotels and restaurants across Uzbekistan.",
+  "add_new_hotel": "Add New Hotel"
 }

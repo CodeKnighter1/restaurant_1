@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const cardController = require('../controllers/hotel.controller');
+const hotelController = require('../controllers/hotel.controller');
+const authMiddleware = require('../middleware/auth.middleware');
 
 // Route to get all hotels
-router.get('/hotel', cardController.getHotels);
-router.post('/hotel/create', cardController.createHotel);
-router.delete('/hotel/delete/:id', cardController.deleteHotel);
+router.get('/hotel', hotelController.getHotels);
+router.post('/hotel/create', authMiddleware, hotelController.createHotel);
+router.delete('/hotel/delete/:id', authMiddleware, hotelController.deleteHotel);
 
 module.exports = router;

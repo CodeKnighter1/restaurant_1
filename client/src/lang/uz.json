@@ -111,6 +111,7 @@
   "create_restaurant_error": "Restoran yaratishda xato yuz berdi",
   "add_hotel": "Mehmonxona qo'shish",
   "add_hotel_description": "Yangi mehmonxona qo'shish uchun ma'lumotlarni kiriting",
+  "add_new_hotel": "Yangi mehmonxona qo'shish",
   "create_hotel": "Mehmonxona yaratish",
   "create_hotel_error": "Mehmonxona yaratishda xato yuz berdi"
 }

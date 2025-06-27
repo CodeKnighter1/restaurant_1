@@ -14,9 +14,12 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuth } from "@/hooks/use-auth";
+import $api from "@/http/api";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const { setAuth } = useAuth();
+  const navigate = useNavigate();
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -25,9 +28,22 @@ function Login() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof loginSchema>) {
-    console.log(values);
-  }
+  const handleLogin = async (values: z.infer<typeof loginSchema>) => {
+    try {
+      const response = await $api.post('/auth/login', values);
+      const { email, isAdmin } = response.data.user || {}; // Xavfsiz olish
+      const token = response.data.token; // Tokenni olish
+      localStorage.setItem('user', JSON.stringify({ email, isAdmin }));
+      localStorage.setItem('token', token); // Tokenni saqlash
+      navigate('/');
+    } catch (error) {
+      console.error('Login error:', error.response?.data);
+      form.setError('root', {
+        type: 'manual',
+        message: error.response?.data?.message || 'Login failed',
+      });
+    }
+  };
 
   return (
     <div className="mx-auto mt-8 w-full max-w-md rounded-2xl bg-gradient-to-b from-green-950 via-green-900 to-green-950 p-6 shadow-xl border border-green-800/40 sm:p-8">
@@ -44,7 +60,7 @@ function Login() {
         </h4>
       </div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={form.handleSubmit(handleLogin)} className="space-y-6">
           <FormField
             control={form.control}
             name="email"
@@ -86,6 +102,9 @@ function Login() {
               Forgot Password
             </span>
           </div>
+          {form.formState.errors.root && (
+            <p className="text-red-400 text-sm">{form.formState.errors.root.message}</p>
+          )}
           <Button
             type="submit"
             className="w-full bg-green-600 hover:bg-green-700 text-white"

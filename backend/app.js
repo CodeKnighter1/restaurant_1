@@ -8,13 +8,20 @@ const port = process.env.PORT || 5000;
 app.use(cors({
   origin: ['http://localhost:5173', 'http://localhost:5174'], // Allow both ports
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 }));
 
 app.use(express.json());
 require('dotenv').config();
 
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: 'Serverda xato yuz berdi' });
+});
+
+// app.use('/api/auth', require('./routes/user.route'));
+app.use('/api/auth', require('./routes/user.route'));
 app.use('/api', require('./routes/card.route'));
 app.use('/api', require('./routes/hotel.route'))
 

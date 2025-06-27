@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { MapIcon, Check, ChevronsUpDown, Menu, X } from "lucide-react";
 import MapModal from "./MapModal";
 import { ModeToggle } from "../mode-toggle";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import {
@@ -21,6 +21,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { useAuth } from "@/hooks/use-auth";
 
 function Navbar() {
   const [isMapOpen, setIsMapOpen] = useState(false);
@@ -29,6 +30,9 @@ function Navbar() {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(i18n.language || "en");
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
+  const { authState, setAuth } = useAuth();
+  const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('user') || !!localStorage.getItem('token'));
 
   const frameworks = [
     { value: "uz", label: "O'zbekcha" },
@@ -50,31 +54,48 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const checkAuth = () => {
+      const hasUser = !!localStorage.getItem('user');
+      const hasToken = !!localStorage.getItem('token');
+      setIsAuthenticated(hasUser || hasToken);
+      if (!hasUser && !hasToken) setAuth('login'); // Agar hech qanday ma'lumot bo'lmasa, login holatiga o'tish
+    };
+    checkAuth();
+    window.addEventListener('storage', checkAuth);
+    return () => window.removeEventListener('storage', checkAuth);
+  }, [setAuth]);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
-      setMobileMenuOpen(false); // mobil menyuni yopish
+      setMobileMenuOpen(false);
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('token'); // Barcha autentifikatsiya ma'lumotlarini o'chirish
+    setIsAuthenticated(false);
+    setAuth('login'); // Logout'da login holatiga qaytish
+    navigate('/auth');
   };
 
   return (
     <div>
       <header className={`fixed w-full top-0 z-50 bg-white dark:bg-black shadow-md transition-shadow ${isScrolled ? "shadow-lg" : "shadow-md"}`}>
         <div className="flex items-center justify-between p-4 max-w-7xl mx-auto">
-          {/* Logo */}
           <Link to="/">
             <h1 className="font-serif text-[22px] sm:text-[25px]">EatUzbekistan.uz</h1>
           </Link>
 
-          {/* Desktop Menu */}
           <ul className="hidden md:flex gap-8 sm:gap-10 lg:gap-4">
             <li><button onClick={() => scrollToSection("home")} className="hover:underline underline-offset-4 text-sm sm:text-base">{t("home")}</button></li>
             <li><button onClick={() => scrollToSection("top-restaurants")} className="hover:underline underline-offset-4 text-sm sm:text-base">{t("top_res")}</button></li>
             <li><button onClick={() => scrollToSection("contact")} className="hover:underline underline-offset-4 text-sm sm:text-base">{t("contact")}</button></li>
           </ul>
 
-          {/* Right Side */}
           <div className="hidden md:flex items-center gap-3">
             <Popover open={open} onOpenChange={setOpen}>
               <PopoverTrigger asChild>
@@ -118,20 +139,24 @@ function Navbar() {
               <span className="text-sm">{t("map_top")}</span>
             </Button>
 
-            <Link to="/auth">
-              <Button variant="ghost" className="p-2 text-sm">{t("login")}</Button>
-            </Link>
+            {isAuthenticated ? (
+              <Button variant="ghost" onClick={handleLogout} className="p-2 text-sm">
+                {t("logout")}
+              </Button>
+            ) : (
+              <Link to="/auth">
+                <Button variant="ghost" className="p-2 text-sm">{t("login")}</Button>
+              </Link>
+            )}
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden ">
+          <div className="md:hidden">
             <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               {mobileMenuOpen ? <X /> : <Menu />}
             </Button>
           </div>
         </div>
 
-        {/* Mobile Menu Content */}
         {mobileMenuOpen && (
           <div className="md:hidden bg-white dark:bg-black px-4 pb-4 space-y-4 shadow-lg animate-slide-down">
             <ul className="flex flex-col gap-3">
@@ -183,15 +208,20 @@ function Navbar() {
                 <span className="text-sm">{t("map_top")}</span>
               </Button>
 
-              <Link to="/auth">
-                <Button variant="ghost" className="text-sm">{t("login")}</Button>
-              </Link>
+              {isAuthenticated ? (
+                <Button variant="ghost" onClick={handleLogout} className="text-sm">
+                  {t("logout")}
+                </Button>
+              ) : (
+                <Link to="/auth">
+                  <Button variant="ghost" className="text-sm">{t("login")}</Button>
+                </Link>
+              )}
             </div>
           </div>
         )}
       </header>
 
-      {/* Map modal */}
       <MapModal open={isMapOpen} onClose={() => setIsMapOpen(false)} />
     </div>
   );

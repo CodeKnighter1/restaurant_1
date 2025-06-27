@@ -19,6 +19,7 @@ import Res_1 from './components/insight/Res_1';
 import Footer from './components/shared/Footer';
 import CardForm from './components/CardForm'; // Import the new component
 import HotelForm from './components/HotelForm';
+import AdminPanel from './components/AdminPanel';
 
 AOS.init();
 
@@ -62,6 +63,7 @@ function App() {
         <Route path="/res_1" element={<Res_1 />} />
         <Route path="/add-card" element={<CardForm />} /> {/* Add this route */}
         <Route path="/add-hotel" element={<HotelForm />} />
+        <Route path="/admin" element={<AdminPanel />} />
       </Routes>
     </div>
   );
